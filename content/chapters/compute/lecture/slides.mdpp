@@ -230,8 +230,9 @@ student@os:~$ cat /proc/`pidof copy_on_write_overhead`/stat | cut -d ' ' -f 10  
 ## Threads - Backstory
 
 * You have an application that applies filters to a set of images
-* Processes need to share all images
-    * Difficult because the images (like all data) are marked copy-on-write
+* If we used processes to spread the work:
+    * images (like all data) would be marked copy-on-write
+    * processes cannot easily modify the "shared" images
 * **Solution:** use threads
     * No copy-on-write: threads share the heap and data sections
 
@@ -1114,4 +1115,4 @@ clone(child_stack=0x7f9ea7df0fb0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGH
 | implemented by libraries         | implemented by the kernel                  |
 | blocking actions stall process   | blocking actions only stall current thread |
 | more mapped on one kernel thread | provide support for user level threads     |
-| Java, Python,                    | Linux KThreads, Windows threads            |
+| Java, Python                     | Linux KThreads, Windows threads            |
