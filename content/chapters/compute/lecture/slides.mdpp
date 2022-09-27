@@ -18,7 +18,7 @@ revealOptions:
 ## Processes
 
 * A process is a **running program**
-    * It is a collection of resources (Memory, CPU, I/O) and abstractions over them (VAS, threads, file descriptors) 
+    * It is a collection of resources (Memory, CPU, I/O) and abstractions over them (VAS, threads, file descriptors)
 * An application can spawn multiple processes
 * The OS allows each [thread](#threads) to run on a **core** for a few milliseconds (time slice)
 * Then the OS pauses the thread and replaces it with another one (context switch)
@@ -202,7 +202,7 @@ When `fork` returns, the child duplicates the contents of the parent's page tabl
 * Writes cause minor page faults
 
 ```
-student@os:~/.../compute/lecture/demo/copy-on-write$ ./copy_on_write_overhead 
+student@os:~/.../compute/lecture/demo/copy-on-write$ ./copy_on_write_overhead
  * Child process started
  -- Press ENTER to continue ...
 Time for reading 131072 pages: 30 ms
@@ -303,7 +303,7 @@ vs
 
 ----
 
-### Typical Thread Execution 
+### Typical Thread Execution
 
 ![Thread Execution](media/thread-behaviour.png)
 
@@ -466,7 +466,7 @@ nonvoluntary_ctxt_switches:     3
     * low fairness (threads at the back of the queue spend more time in READY)
 * Small time slice:
     * low throughput
-    * high fairness 
+    * high fairness
 
 ---
 
@@ -581,7 +581,7 @@ student@os:~$ ps -e -o pid,ni,comm | grep 5753
 ### Priority-Based Round-Robin
 
 * The scheduler keeps a list of queues, one for each priority
-* During a context switch, the new RUNNING thread is chosen from the highest priority non-empty queue 
+* During a context switch, the new RUNNING thread is chosen from the highest priority non-empty queue
 
 ![Priority-Based Round-Robin](media/priority-round-robin.svg)
 
@@ -1009,7 +1009,7 @@ student@os:~/.../compute/lecture/demo/create-process$ strace -ff -e clone,execve
 execve("./system", ["./system"], 0x7ffff3f20008 /* 60 vars */) = 0
 clone(child_stack=0x7f3fa624aff0, flags=CLONE_VM|CLONE_VFORK|SIGCHLDstrace: Process 117770 attached
  <unfinished ...>
-[pid 117770] execve("/bin/sh", ["sh", "-c", "ls -la"], 0x7ffdac7acfe8 /* 60 vars */ 
+[pid 117770] execve("/bin/sh", ["sh", "-c", "ls -la"], 0x7ffdac7acfe8 /* 60 vars */
 [...]
 [pid 117770] clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9292b28850) = 117771
 strace: Process 117771 attached

@@ -14,7 +14,7 @@ Software running while you are doing your homework:
 * Browser with 10+ https://stackoverflow.com/ tabs
 * Discord
 * Spotify
-* Torrent client
+* Bittorrent client
 * Crypto miner
 * The OS itself
 
