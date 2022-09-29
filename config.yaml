@@ -1,0 +1,59 @@
+stages:
+  - make_assets
+  - build_slides
+  - embed_reveal
+  - docusaurus
+
+build_dir: /build
+
+make_assets:
+  plugin: command
+  options:
+    command: make
+    locations:
+      - content/chapters/compute/lecture
+    args:
+      - all
+
+build_slides:
+  input: /build/make_assets
+  plugin: revealmd
+  options:
+    build:
+      Compute: content/chapters/compute/lecture/slides.md
+
+embed_reveal:
+  plugin: reveal_embed
+  options:
+    target: docusaurus
+    extension: mdx
+    build:
+      Compute: Compute
+
+docusaurus:
+  plugin: docusaurus
+  options:
+    course_name: SO
+    sidebar: js
+    structure:
+      - Lecture:
+        - Compute:
+            name: Compute
+            location: /build/embed_reveal/Compute
+      - Lab:
+        - Compute:
+            location: content/chapters/compute/lab
+            name: README
+    static_assets:
+      - /build/build_slides/Compute
+    config_meta:
+      title: Operating Systems
+      url: http://localhost/
+      baseUrl: /
+      onBrokenLinks: warn
+      onBrokenMarkdownLinks: warn
+    config_socials:
+      Main site: https://curs.upb.ro
+      OCW: https://ocw.cs.pub.ro/courses/so
+      Facebook: https://www.facebook.com/sisteme.de.operare/
+    copyright_string: SO Team

@@ -537,12 +537,10 @@ When changes happen, the process making the change receives a unique frame as a 
 In the image below we have the state of the child and parent processes right after `fork()` returns in both of them.
 See how each has its own VAS, both of them being mapped to (mostly) the same PAS.
 
-![Copy-on-Write](../lecture/media/copy-on-write-initial.svg)
 
 When one process writes data to a writeable page (in our case, the child writes to a heap page), the frame to which it corresponds is first duplicated.
 Then the process' page table points the page to the newly copied frame, as you can see in the image below.
 
-![Copy-on-Write](../lecture/media/copy-on-write-final.svg)
 
 **Be careful!**
 Do not confuse copy-on-write with demand paging.
